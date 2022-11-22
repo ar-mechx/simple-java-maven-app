@@ -1,8 +1,8 @@
 pipeline {
    
-	agent {
-    label 'android'
-  }
+	agent any
+  
+  
    
    
         
