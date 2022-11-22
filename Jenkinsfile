@@ -1,4 +1,4 @@
-String 'PERSON'
+String PERSON
 pipeline {
    
 	agent any
