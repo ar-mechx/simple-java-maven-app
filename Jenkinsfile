@@ -29,10 +29,7 @@ stage('clean') {
   steps {
            
            sh 'chmod a+x  mvnw' 
-          sh './mvnw clean '
-
-
-  
+          sh './mvnw clean ' 
 }
 }
 stage('Build JAR') {
@@ -57,9 +54,4 @@ stage("Archive") {
   }
 
 
-    }        
- 
-
-
-
-
+    }  
