@@ -8,8 +8,8 @@ pipeline {
 stage('clean') {
   steps {
            
-            
-          sh 'mvnw clean '
+          sh 'mvn wrapper:wrapper '  
+          sh './mvnw clean '
 
 
   
@@ -19,7 +19,7 @@ stage('Build JAR') {
   steps {
           
            
-          sh 'mvnw  install'
+          sh './mvnw  install'
 
 
 
