@@ -1,10 +1,10 @@
 pipeline {
    
-	agent {
-    label 'android'
-  }
-   
-   
+	agent any
+    
+
+        
+        }
 
   stages {
        
@@ -55,16 +55,10 @@ stage("Archive") {
          
   }
   }
- }
+
 
     }        
  
-
-
-
-
-
-
 
   post { 
         always { 
