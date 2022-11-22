@@ -9,7 +9,7 @@ stage('clean') {
   steps {
            
             
-          sh './mvnw clean '
+          sh 'mvnw clean '
 
 
   
@@ -19,7 +19,7 @@ stage('Build JAR') {
   steps {
           
            
-          sh './mvnw  install'
+          sh 'mvnw  install'
 
 
 
