@@ -45,30 +45,7 @@ stage("Archive") {
    
            steps {
                 
-              sh """
-                    echo 'tag = ${IMAGE_TAG}'
-                    echo 'Building the Docker image...'
-                    podman build -t default-route-openshift-image-registry.apps.ocp-test.eg01.etisalat.net/${IMAGE_REPO_NAME}:$IMAGE_TAG .
-                    echo 'Pushing Docker image to registry...'
-                    export KUBECONFIG=/home/jenkins/kubeconfig
-                    oc login -u ${oc_username_4} -p ${oc_password_4} https://api.ocp-test.eg01.etisalat.net:6443
-                   echo 'OC Password = ${oc_password_4}'
-                   echo 'oc_username = ${oc_username_4} '
-                """
-                   
-
-              
-               sh 'podman login -u $(oc whoami)  -p $(oc whoami --show-token) default-route-openshift-image-registry.apps.ocp-test.eg01.etisalat.net --tls-verify=false '
-
-
-                sh """
-                    podman push default-route-openshift-image-registry.apps.ocp-test.eg01.etisalat.net/${IMAGE_REPO_NAME}:$IMAGE_TAG --tls-verify=false
-
-                """
-                
-                  
-              
-
+              echo echo
 
 
 
@@ -77,14 +54,7 @@ stage("Archive") {
     stage('Approval Step'){
             steps{
            
-                script {
-                      emailext mimeType: 'text/html',
-                      subject: "$BUILD_NUMBER] Approval for Job [$JOB_NAME]" ,
-                      to: "sawsan.salaheldin@Etisalat.Com",
-                     body: '''<a href="${BUILD_URL}input">Please click to approve</a>'''
-                   env.APPROVED_DEPLOY = input message: 'User input required',
-                   parameters: [choice(name: 'Deploy?', choices: 'no\nyes', description: 'Choose "yes" if you want to deploy this build')]
-                       }
+            echo echo
                
             }
         }
@@ -95,13 +65,7 @@ stage("Archive") {
                 environment name:'APPROVED_DEPLOY', value: 'yes'
             }
             steps{
-                sh """
-                oc login --insecure-skip-tls-verify -u ${oc_username_4} -p ${oc_password_4} https://api.ocp-test.eg01.etisalat.net:6443
-                     
-                oc project $oc_project
-                oc apply -f oc/deployment4.yaml
-
-                """
+                echo echo
             }
         }
     }        
