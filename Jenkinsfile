@@ -1,3 +1,4 @@
+String 'PERSON'
 pipeline {
    
 	agent any
