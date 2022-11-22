@@ -1,59 +1,18 @@
+
+
 pipeline {
-   
-	agent any
-  
+    agent {
+        docker {
+            image 'maven:3.8.1-adoptopenjdk-11' 
+            args '-v /root/.m2:/root/.m2' 
         }
-
-stages {
-       
- stage ('Email notification') {
+    }
+    stages {
+        stage('Build') { 
             steps {
-                    echo '>>> Send New application build notification'
-                    //mail bcc: '', body: 'Thanks', cc: '', from: '', replyTo: '', subject: "New Build # [$BUILD_NUMBER] triggered for Job [$JOB_NAME]", to: ${EMAIL_TO}
-                    mail bcc: '', body: """Dears,
-                    A new build has been started for the Job [$JOB_NAME].
-                    Below are the Build details:
-                    Build Number : $BUILD_NUMBER
-                    Build URL is : $BUILD_URL
-                    Build Tag : $BUILD_TAG
-                    Node Name : $NODE_NAME
-                    Executor Number : $EXECUTOR_NUMBER
-                    Workspace : $WORKSPACE
-                    Thanks. """, cc: '', from: '', replyTo: '', subject: "New Build # [$BUILD_NUMBER] triggered for Job [$JOB_NAME]", to: "$EMAIL_TO"
+                sh 'mvn -B -DskipTests clean package' 
             }
- }
-
-stage('clean') {
-  steps {
-           
-           sh 'chmod a+x  mvnw' 
-          sh './mvnw clean ' 
+        }
+    }
 }
-}
-stage('Build JAR') {
-  steps {
-          
-           sh 'chmod a+x  mvnw'
-          sh './mvnw  install'
-
-
-
-  
-}
-}
-stage("Archive") {
-  steps {
-        
-        archiveArtifacts allowEmptyArchive: false, artifacts: '**/*.jar'
-         
-        
-         
-  }
-  }
-
-
-    }  
-
-
-
 
