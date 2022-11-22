@@ -51,9 +51,9 @@ stage("Archive") {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
-                submitter "v21afahmy15"
+                submitter "DevOps"
                 parameters {
-                    string(name: 'PERSON', defaultValue: 'RiskTeam', description: 'Deploy to Production server .59?')
+                    string(name: 'PERSON', defaultValue: 'DevOps Team', description: 'Deploy to server ?')
                 }
             }
             steps {
