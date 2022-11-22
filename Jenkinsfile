@@ -1,12 +1,10 @@
 pipeline {
    
 	agent any
-    
-
-        
+  
         }
 
-  stages {
+stages {
        
  stage ('Email notification') {
             steps {
@@ -55,3 +53,7 @@ stage("Archive") {
 
 
     }  
+
+
+
+
