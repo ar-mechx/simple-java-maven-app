@@ -4,11 +4,6 @@ pipeline {
 
   stages {
        
- stage ('Email notification') {
-            steps {
-                    sh 'echo echo'
-            }
- }
 
 stage('clean') {
   steps {
