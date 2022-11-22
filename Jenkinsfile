@@ -6,7 +6,7 @@ pipeline {
        
  stage ('Email notification') {
             steps {
-                    echo echo
+                    sh 'echo echo'
             }
  }
 
