@@ -1,13 +1,54 @@
 pipeline {
    
 	agent any
+   
+   
+        
+
+      environment {
+        NEXUS_VERSION = "Nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "http://10.208.202.205:8081/"
+        NEXUS_REPOSITORY = "maven-nexus"
+        NEXUS_CREDENTIAL_ID = "Nexus_Admin"
+
+        EMAIL_TO = 'sawsan.salaheldin@Etisalat.Com'
+        IMAGE_REPO_NAME= 'shoppizer/shoppizer'
+        IMAGE_TAG = readMavenPom().getVersion()
+        oc_project= 'shoppizer'
+        
+        oc_username_4=credentials("oc_username_4")
+        oc_password_4=credentials("oc_password_4")
+      
+
+    
+
+        
+        }
 
   stages {
        
+ stage ('Email notification') {
+            steps {
+                    echo '>>> Send New application build notification'
+                    //mail bcc: '', body: 'Thanks', cc: '', from: '', replyTo: '', subject: "New Build # [$BUILD_NUMBER] triggered for Job [$JOB_NAME]", to: ${EMAIL_TO}
+                    mail bcc: '', body: """Dears,
+                    A new build has been started for the Job [$JOB_NAME].
+                    Below are the Build details:
+                    Build Number : $BUILD_NUMBER
+                    Build URL is : $BUILD_URL
+                    Build Tag : $BUILD_TAG
+                    Node Name : $NODE_NAME
+                    Executor Number : $EXECUTOR_NUMBER
+                    Workspace : $WORKSPACE
+                    Thanks. """, cc: '', from: '', replyTo: '', subject: "New Build # [$BUILD_NUMBER] triggered for Job [$JOB_NAME]", to: "$EMAIL_TO"
+            }
+ }
+
 stage('clean') {
   steps {
            
-           
+           sh 'chmod a+x  mvnw' 
           sh './mvnw clean '
 
 
@@ -17,7 +58,7 @@ stage('clean') {
 stage('Build JAR') {
   steps {
           
-           
+           sh 'chmod a+x  mvnw'
           sh './mvnw  install'
 
 
