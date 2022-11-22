@@ -1,27 +1,6 @@
 pipeline {
    
 	agent any
-     
-      environment {
-        NEXUS_VERSION = "Nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "http://10.208.202.205:8081/"
-        NEXUS_REPOSITORY = "maven-nexus"
-        NEXUS_CREDENTIAL_ID = "Nexus_Admin"
-
-        EMAIL_TO = 'ar-mechx@hotmail.com'
-        IMAGE_REPO_NAME= 'shoppizer/shoppizer'
-        IMAGE_TAG = readMavenPom().getVersion()
-        oc_project= 'shoppizer'
-        
-        oc_username_4=credentials("oc_username_4")
-        oc_password_4=credentials("oc_password_4")
-      
-
-    
-
-        
-        }
 
   stages {
        
