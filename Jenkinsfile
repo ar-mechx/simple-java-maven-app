@@ -45,7 +45,7 @@ stage("Archive") {
    
            steps {
                 
-              echo echo
+              sh 'echo echo'
 
 
 
@@ -54,7 +54,7 @@ stage("Archive") {
     stage('Approval Step'){
             steps{
            
-            echo echo
+            sh 'echo echo'
                
             }
         }
@@ -65,7 +65,7 @@ stage("Archive") {
                 environment name:'APPROVED_DEPLOY', value: 'yes'
             }
             steps{
-                echo echo
+                sh 'echo echo'
             }
         }
     }        
