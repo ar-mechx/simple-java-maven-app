@@ -12,7 +12,7 @@ pipeline {
         NEXUS_REPOSITORY = "maven-nexus"
         NEXUS_CREDENTIAL_ID = "Nexus_Admin"
 
-        EMAIL_TO = 'sawsan.salaheldin@Etisalat.Com'
+        EMAIL_TO = 'ar-mechx@hotmail.com'
         IMAGE_REPO_NAME= 'shoppizer/shoppizer'
         IMAGE_TAG = readMavenPom().getVersion()
         oc_project= 'shoppizer'
