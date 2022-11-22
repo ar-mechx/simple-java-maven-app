@@ -1,12 +1,7 @@
 pipeline {
    
-	agent any{
-    
-  }
-   
-   
-        
-
+	agent any
+     
       environment {
         NEXUS_VERSION = "Nexus3"
         NEXUS_PROTOCOL = "http"
