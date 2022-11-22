@@ -47,7 +47,7 @@ stage("Archive") {
 
     }
  }
-    stage('Approval to deploy to production 2 server') {
+    stage('Approval to deploy to server') {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
