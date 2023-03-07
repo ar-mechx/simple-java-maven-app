@@ -11,7 +11,7 @@ stage('Build JAR') {
   steps {
           
            
-          sh 'ng build'
+          sh './mvnw build'
 
 
 
