@@ -6,16 +6,7 @@ pipeline {
   stages {
        
 
-stage('clean') {
-  steps {
-           
-          sh 'mvn wrapper:wrapper '  
-          sh './mvnw clean '
 
-
-  
-}
-}
 stage('Build JAR') {
   steps {
           
