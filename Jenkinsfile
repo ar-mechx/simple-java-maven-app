@@ -1,79 +1,30 @@
-String PERSON
 pipeline {
-   
-	agent any
-
-  stages {
-       
-
-
-stage('Build JAR') {
-  steps {
-          
-           
-          sh 'mvn wrapper:wrapper -e -N io.takari:maven:wrapper'  
-          sh 'mvn clean '
-	  sh 'mvn install -DskipTests'
-
-
-  
-}
-}
-stage("Archive") {
-  steps {
-        
-        archiveArtifacts allowEmptyArchive: false, artifacts: '**/*.jar'
-         
-        
-         
-  }
-  }
- stage('Build Docker Image') {
-     
-   
-           steps {
-                
-              sh 'echo echo'
-
-
-
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
     }
- }
-    stage('Approval stage') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "DevOps"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'DevOps Team', description: 'Deploy to server ?')
-                }
-            }
+    stages {
+        stage('Build') {
             steps {
-                echo "Hello, nice to meet you."
-            }
-          }
-
-
-        stage("deploy"){
-              when {
-                environment name:'APPROVED_DEPLOY', value: 'yes'
-            }
-            steps{
-                sh 'echo echo'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-    }        
- 
-
-
-
-
-
-
-
- 
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
+    }
 }
-
-
-
-
