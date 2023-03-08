@@ -11,7 +11,7 @@ stage('Build JAR') {
   steps {
           
            
-          sh './mvnw clean install'
+          sh './mvn install'
 
 
 
