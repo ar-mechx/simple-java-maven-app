@@ -11,9 +11,9 @@ stage('Build JAR') {
   steps {
           
            
-          sh 'mvn wrapper:wrapper '  
-          sh 'mvnw clean '
-	  sh 'mvnw install -DskipTests'
+          sh './mvnw wrapper:wrapper '  
+          sh './mvnw clean '
+	  sh './mvnw install -DskipTests'
 
 
   
