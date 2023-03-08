@@ -13,7 +13,8 @@ stage('Build JAR') {
            
           sh 'mvn wrapper:wrapper '  
           sh 'mvnw clean '
-	  sh 'mvn  install'
+	  sh './mvnw -N io.takari:maven:wrapper -Dmaven=3.8.6
+'
 
 
   
