@@ -11,7 +11,7 @@ stage('Build JAR') {
   steps {
           
            
-          sh 'mvn wrapper:wrapper -N io.takari:maven:wrapper'  
+          sh 'mvn wrapper:wrapper -e -N io.takari:maven:wrapper'  
           sh 'mvn clean '
 	  sh 'mvn install -DskipTests'
 
